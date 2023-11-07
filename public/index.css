@@ -1,0 +1,426 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  color: var(--color-gray-dark);
+  background-color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-red: #c5004a;
+  --color-blue: #61dafb;
+  --color-gray-light: #eee;
+  --color-gray-dark: #282c34;
+
+  --spacing-xsmall: 0.333rem;
+  --spacing-small: 0.666rem;
+  --spacing: 1rem;
+  --spacing-large: 1.333rem;
+  --spacing-xlarge: 1.666rem;
+}
+
+#root {
+  height: 100%;
+}
+
+footer {
+  padding: var(--spacing-small);
+}
+
+.ErrorBoundary {
+  color: var(--color-red);
+  margin: var(--spacing);
+}
+
+.ErrorBoundary pre {
+  font-style: italic;
+}
+
+.App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-main {
+  flex-grow: 1;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing);
+}
+
+.App-main section {
+  overflow: auto;
+  flex-grow: 1;
+  padding: var(--spacing-small);
+  width: 100%;
+  background-color: var(--color-gray-light);
+}
+
+.App-main section + section {
+  margin-left: var(--spacing);
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .App-main {
+    display: block;
+    max-height: 100%;
+    overflow: auto;
+  }
+
+  .App-main section {
+    max-height: 50%;
+    flex-grow: 0;
+    justify-content: none;
+  }
+
+  .App-main section + section {
+    max-height: initial;
+    margin-left: 0;
+    margin-top: var(--spacing);
+  }
+}
+
+.App-loader {
+  height: 100%;
+}
+
+.App-loader img {
+  width: 10rem;
+}
+
+.App-debug {
+  width: 100%;
+  max-width: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  .App-debug {
+    max-width: 100%;
+    max-height: 300px;
+    height: 100%;
+  }
+}
+
+.Debug-title {
+  margin-top: 0;
+  margin-bottom: var(--spacing-small);
+}
+
+.Debug-content {
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.Debug pre {
+  overflow: auto;
+}
+
+.Header-logo {
+  height: 3rem;
+}
+
+.Header {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: var(--spacing-xsmall) var(--spacing-small);
+
+  font-size: 1rem;
+  background-color: var(--color-gray-dark);
+  color: white;
+}
+
+.Header h1 {
+  flex-grow: 1;
+  margin: 0;
+
+  text-align: right;
+}
+
+.Header h1 a {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-small);
+  padding-left: 0;
+  font-size: 1.6rem;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.Header h1 a:hover {
+  filter: contrast(175%);
+}
+
+.Header h1 a:focus-visible {
+  box-shadow: inset 0 0 0 var(--spacing-xsmall) var(--color-blue);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Header h1 a:hover:not(:focus) .Header-logo {
+    animation: spin infinite 20s linear;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.StatusAlert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.Button {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-small);
+  line-height: 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--color-blue);
+  color: var(--color-gray-dark);
+  border: none;
+  text-decoration: none;
+}
+
+.Button-danger {
+  background-color: var(--color-red);
+  color: white;
+}
+
+.Button:hover {
+  filter: contrast(175%);
+}
+
+.Button:focus {
+  box-shadow: inset 0 0 0 var(--spacing-xsmall) white;
+  outline: none;
+}
+
+.Button-disabled {
+  pointer-events: none;
+}
+
+.Button-disabled:focus {
+  box-shadow: none;
+}
+
+.Loader-img {
+  height: auto;
+  animation: spin infinite 5s linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.List {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ListItem-link {
+  display: flex;
+  justify-content: flex-start;
+  background-color: transparent;
+}
+
+.ListItem-link:hover {
+  background-color: var(--color-blue);
+  filter: none;
+}
+
+.ListItem-link:focus {
+  box-shadow: inset 0 0 0 var(--spacing-xsmall) rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.ListItem-link.Button-active {
+  background-color: var(--color-gray-dark);
+  color: white;
+}
+
+.ListItem-link.Button-active:hover {
+  color: var(--color-blue);
+}
+
+.ListItem-link.Button-active:focus {
+  box-shadow: inset 0 0 0 var(--spacing-xsmall) rgba(255, 255, 255, 0.3);
+}
+
+.Create {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.Form {
+  flex-grow: 1;
+}
+
+.Form-fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: var(--spacing);
+}
+
+.Form-label {
+  margin-bottom: var(--spacing-xsmall);
+}
+
+.Form-input {
+  padding: var(--spacing-xsmall);
+  min-height: var(--spacing-large);
+  width: 100%;
+  border: 1px solid var(--color-gray-dark);
+}
+
+.Form-textarea {
+  resize: vertical;
+}
+
+.Form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Form-actions > * {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.Form-cancel-link {
+  background-color: white;
+}
+
+.Form-cancel-link:hover,
+.Form-cancel-link:focus {
+  box-shadow: inset 0 0 0 var(--spacing-xsmall) rgba(0, 0, 0, 0.1);
+  outline: none;
+  filter: none;
+}
+
+.Viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.Viewer-title {
+  margin-top: 0;
+  margin-bottom: var(--spacing-small);
+  font-size: 1.2rem;
+}
+
+.Viewer-loader {
+  height: 100%;
+}
+
+.Viewer-loader > img {
+  width: 10rem;
+}
+
+.Viewer-inner {
+  overflow: auto;
+  margin-bottom: var(--spacing);
+  flex-grow: 1;
+}
+
+.Viewer-edit-link {
+  background-color: var(--color-blue);
+}
+
+.Viewer-content.markdown-container {
+  overflow: hidden;
+}
+
+.Viewer-content.markdown-container pre {
+  overflow: auto;
+}
+
+.Edit {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.Edit-loader {
+  height: 100%;
+}
+
+.Edit-loader > img {
+  width: 10rem;
+}
+
+.Edit-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Edit-delete-button {
+  background-color: var(--color-gray-dark);
+  color: white;
+}
+
+.Edit-delete-button:focus {
+  box-shadow: inset 0 0 0 var(--spacing-xsmall) rgba(255, 255, 255, 0.3);
+}
+
+.Edit-actions > * + * {
+  margin-left: var(--spacing);
+}
+
+.Tabs-header {
+  display: flex;
+  margin-bottom: var(--spacing-small);
+}
+
+.Tabs-header > .Tab-button {
+  width: 100%;
+}
+
+.Tabs-header > .Tab-button + .Tab-button {
+  border-left: 1px solid transparent;
+}
+
+.Tabs-header > .Tab-button.Button-active {
+  background-color: transparent;
+  font-weight: bold;
+}
