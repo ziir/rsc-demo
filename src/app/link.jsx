@@ -3,9 +3,7 @@ export function Link({ to, disabled, className, ...extra }) {
     <a
       is="a-route"
       href={to}
-      class={["Link", className]
-        .filter(Boolean)
-        .join(" ")}
+      class={["Link", className].filter(Boolean).join(" ")}
       {...extra}
     />
   );

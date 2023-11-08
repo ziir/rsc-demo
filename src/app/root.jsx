@@ -4,7 +4,7 @@ import { logger } from "../utils/logger";
 
 export function Root({ flightTreePromise: initialFlightTreePromise }) {
   const [flightTreePromise, setFlightTreePromise] = useState(
-    initialFlightTreePromise
+    initialFlightTreePromise,
   );
 
   useEffect(() => {
@@ -15,17 +15,17 @@ export function Root({ flightTreePromise: initialFlightTreePromise }) {
           "[root]",
           "[trigger-rsc-refresh]",
           "fetching React Flight App tree for props",
-          props
+          props,
         );
         const refreshFlightTreePromise = createFromFetch(
           fetch(
-            `/react-flight?props=${encodeURIComponent(JSON.stringify(props))}`
-          )
+            `/react-flight?props=${encodeURIComponent(JSON.stringify(props))}`,
+          ),
         );
 
         setFlightTreePromise(refreshFlightTreePromise);
       },
-      false
+      false,
     );
   }, []);
 

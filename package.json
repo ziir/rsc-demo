@@ -1,18 +1,31 @@
 {
   "name": "rsc-demo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "React Server Components (RSC) Demo / Playground without a framework",
+  "homepage": "https://timtech.blog/posts/react-server-components-rsc-no-framework/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ziir/rsc-demo.git"
+  },
+  "author": {
+    "name": "Timothée “Tim” Pillard",
+    "email": "github@tpillard.fr",
+    "url": "https://twitter.com/tpillard"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "server-components",
+    "rsc",
+    "demo",
+    "playground"
+  ],
+  "main": "server/main.js",
   "scripts": {
     "start": "NODE_ENV=production node --conditions react-server server/main.js",
     "build": "NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "ssh $RSC_DEMO_DEPLOY deploy default.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "config": {
-    "NODE_ENV": "development"
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.23.0",

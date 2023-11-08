@@ -39,16 +39,6 @@ const config = {
   },
   optimization: {
     runtimeChunk: "single",
-    //    runtimeChunk: "single",
-    //    splitChunks: {
-    //      cacheGroups: {
-    //        react: {
-    //          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-    //          name: "react",
-    //          chunks: "all",
-    //        },
-    //      },
-    //    },
   },
   devtool: development ? "cheap-module-source-map" : "source-map",
 };

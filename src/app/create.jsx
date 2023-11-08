@@ -21,7 +21,7 @@ export function Create() {
             "executing handleCreateAction client action",
             {
               toCreate,
-            }
+            },
           );
 
           const item = {

@@ -18,7 +18,7 @@ for (const flightResponseChunk of flightResponseText
 }
 
 const flightTreePromise = createFromReadableStream(
-  new Response(flightResponseText).body
+  new Response(flightResponseText).body,
 );
 
 const root = createRoot(document.getElementById("root"));

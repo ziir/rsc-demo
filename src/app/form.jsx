@@ -21,12 +21,8 @@ export function Form({
         role="form"
         className="Form"
         action={async function handleFormAction(formData) {
-          const item = {};
-          for (let [key, value] of formData) {
-            item[key] = value;
-          }
           setSubmitting(true);
-          await handleAction(item);
+          await handleAction(Object.fromEntries(formData));
           setSubmitting(false);
         }}
       >
