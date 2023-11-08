@@ -7,7 +7,7 @@ import { logger } from "../utils/logger";
 export function RscRefreshButton() {
   logger.info(
     "[rsc-refresh-button]",
-    "rendering RscRefreshButton client component"
+    "rendering RscRefreshButton client component",
   );
   const { location, route, match } = useRouter();
 
@@ -21,12 +21,12 @@ export function RscRefreshButton() {
           logger.info(
             "[rsc-refresh-button]",
             "triggering 'trigger-rsc-refresh' event with props",
-            props
+            props,
           );
           window.dispatchEvent(
             new CustomEvent("trigger-rsc-refresh", {
               detail: props,
-            })
+            }),
           );
         }}
       >

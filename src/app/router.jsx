@@ -40,7 +40,7 @@ function routeHandler(route, setContext, match) {
         "[router]",
         "[routeHandler]",
         "updating router context",
-        context
+        context,
       );
 
       return context;
@@ -55,7 +55,7 @@ export function RouterContextProvider({
   logger.debug(
     "[router]",
     "[RouterContextProvider]",
-    "rendering RouterContextProvider client component"
+    "rendering RouterContextProvider client component",
   );
   const [context, setContext] = useState(INITIAL_CONTEXT);
 
@@ -71,7 +71,7 @@ export function RouterContextProvider({
         "[router]",
         "[RouterContextProvider]",
         "attaching route handler",
-        route
+        route,
       );
       router.get(route, routeHandler.bind(null, route, setContext));
     }

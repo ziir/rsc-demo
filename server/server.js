@@ -18,19 +18,19 @@ const { App } = require("../src/app/app");
 
 const MANIFEST = readFileSync(
   path.resolve(__dirname, "../dist/react-client-manifest.json"),
-  "utf8"
+  "utf8",
 );
 const MODULE_MAP = JSON.parse(MANIFEST);
 
 const HTML_SHELL = readFileSync(
   path.resolve(__dirname, "../dist/index.html"),
-  "utf8"
+  "utf8",
 );
 
 function renderReactTree(writable, component, props) {
   const { pipe } = renderToPipeableStream(
     React.createElement(component, props),
-    MODULE_MAP
+    MODULE_MAP,
   );
   pipe(writable);
 }
@@ -103,7 +103,7 @@ for (const route of routePaths) {
   setRouteHandler(async function routeHandler(request, reply) {
     const { search, pathname } = new URL(
       request.url,
-      `http://${HTTP_HOST}:${HTTP_PORT}`
+      `http://${HTTP_HOST}:${HTTP_PORT}`,
     );
 
     const props = {
@@ -134,7 +134,7 @@ for (const route of routePaths) {
 
     request.log.info("accumulated React Flight Response.");
     request.log.info(
-      "serving HTML shell with injected inline Flight response ..."
+      "serving HTML shell with injected inline Flight response ...",
     );
 
     reply.header("Content-Type", "text/html");
@@ -179,7 +179,7 @@ fastify.get("/react-flight", function reactFlightHandler(request, reply) {
     const props = JSON.parse(request.query.props);
     request.log.debug(
       "incoming /react-flight request with props, validating ...",
-      { props }
+      { props },
     );
     appPropsSchema.parse(props);
 

@@ -46,7 +46,7 @@ export async function App(props) {
   const { match } = props;
 
   const items = await new Promise((resolve) =>
-    setTimeout(() => resolve(itemFixtures), 500)
+    setTimeout(() => resolve(itemFixtures), 500),
   );
   logger.debug("[app]", "resolved items", { items });
 

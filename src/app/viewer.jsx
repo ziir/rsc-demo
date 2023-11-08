@@ -17,7 +17,7 @@ export function Viewer() {
     "[viewer]",
     "rendering Viewer client component",
     { params },
-    { clientItem }
+    { clientItem },
   );
 
   if (!clientItem) {

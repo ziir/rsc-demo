@@ -25,7 +25,7 @@ export function Edit() {
     "[edit]",
     "rendering Edit client component",
     { params },
-    { clientItem }
+    { clientItem },
   );
 
   if (!clientItem) {
@@ -62,7 +62,7 @@ export function Edit() {
                 logger.info(
                   "[edit]",
                   "executing handleDeleteAction client action",
-                  { formData }
+                  { formData },
                 );
                 setDeleting(true);
                 const deleteId = formData.get("id");
