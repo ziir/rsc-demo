@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { createFromFetch } from "react-server-dom-webpack/client";
 import { logger } from "../utils/logger";
 
@@ -30,5 +30,5 @@ export function Root({ flightTreePromise: initialFlightTreePromise }) {
   }, []);
 
   logger.log("[root]", "rendering flight tree", { flightTreePromise });
-  return use(flightTreePromise);
+  return flightTreePromise;
 }
