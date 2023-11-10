@@ -1,6 +1,6 @@
 "use strict";
 
-const path = require("path");
+const path = require("node:path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ReactServerWebpackPlugin = require("react-server-dom-webpack/plugin");
 
@@ -36,11 +36,15 @@ const config = {
       : "[id].[contenthash].chunk.js",
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
+    clean: true,
   },
   optimization: {
     runtimeChunk: "single",
   },
   devtool: development ? "cheap-module-source-map" : "source-map",
+  watchOptions: {
+    ignored: ["./server", "./public"],
+  },
 };
 
 module.exports = config;
