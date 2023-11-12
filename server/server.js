@@ -32,7 +32,7 @@ function renderReactTree(writable, component, props) {
   pipe(writable);
 }
 
-const HTTP_HOST = process.env.HOST ?? "127.0.0.1";
+const HTTP_HOST = process.env.HOST ?? "0.0.0.0";
 const HTTP_PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 const NODE_ENV = process.env.NODE_ENV || "development";
 
