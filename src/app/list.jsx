@@ -1,8 +1,9 @@
 import { ListItem } from "./list-item";
 import { logger } from "../utils/logger";
 
-export function List({ items, emptyCallToAction, activeItemId }) {
+export async function List({ itemsPromise, emptyCallToAction, activeItemId }) {
   logger.log("[list]", "rendering List server component", { activeItemId });
+  const items = await itemsPromise;
 
   if (!items) {
     return null;

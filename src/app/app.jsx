@@ -41,20 +41,19 @@ const appLoader = (
   </StatusAlert>
 );
 
-export async function App(props) {
-  logger.log("[app]", "rendering App server component");
+export function App(props) {
+  logger.log("[app]", "rendering App server component", { props });
   const { match } = props;
 
-  const items = await new Promise((resolve) =>
-    setTimeout(() => resolve(itemFixtures), 500),
+  const itemsPromise = new Promise((resolve) =>
+    setTimeout(() => resolve(itemFixtures), 500)
   );
-  logger.debug("[app]", "resolved items", { items });
 
   return (
     <Layout header={<Header />}>
       {
         <Suspense fallback={appLoader}>
-          <ItemsContextProvider initialItems={items}>
+          <ItemsContextProvider initialItemsPromise={itemsPromise}>
             <RouterContextProvider>
               <section className="App-debug">
                 <RscRefreshButton />
@@ -68,13 +67,11 @@ export async function App(props) {
                       id: "server",
                       label: "Server component",
                       content: (
-                        <Suspense fallback={appLoader}>
-                          <List
-                            items={items}
-                            activeItemId={match?.params?.id}
-                            emptyCallToAction={emptyCallToAction}
-                          />
-                        </Suspense>
+                        <List
+                          itemsPromise={itemsPromise}
+                          activeItemId={match?.params?.id}
+                          emptyCallToAction={emptyCallToAction}
+                        />
                       ),
                     },
                     {

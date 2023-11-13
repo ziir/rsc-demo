@@ -1,6 +1,8 @@
 "use client";
 
-import { createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useRef, use, useState } from "react";
+
+import { logger } from "../utils/logger";
 
 const INITIAL_CONTEXT = { items: null };
 
@@ -24,15 +26,19 @@ export function useItemMutation() {
 }
 
 export function ItemsContextProvider({
-  initialItems = INITIAL_CONTEXT.items,
+  initialItemsPromise = Promise.resolve(INITIAL_CONTEXT.items),
   children,
 }) {
-  console.log("ItemsContextProvider", initialItems);
-  const initialItemsRef = useRef(initialItems);
+  logger.info("[items]", "rendering ItemsContextProvider client component");
+  const initialItems = use(initialItemsPromise);
+  const initialItemsPromiseRef = useRef(initialItemsPromise);
   const [items, setItems] = useState(initialItems);
 
-  if (initialItems !== initialItemsRef.current) {
-    initialItemsRef.current = initialItems;
+  if (initialItemsPromise !== initialItemsPromiseRef.current) {
+    initialItemsPromiseRef.current = initialItemsPromise;
+    logger.info("[items]", "updating ItemsContextProvider initial items", {
+      initialItems,
+    });
     setItems(initialItems);
   }
 
