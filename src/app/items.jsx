@@ -25,20 +25,19 @@ export function useItemMutation() {
   return { addItem, updateItem, deleteItem };
 }
 
-export function ItemsContextProvider({
-  initialItemsPromise = Promise.resolve(INITIAL_CONTEXT.items),
-  children,
-}) {
+export function ItemsContextProvider({ initialItemsPromise, children }) {
   logger.info("[items]", "rendering ItemsContextProvider client component");
-  const initialItems = use(initialItemsPromise);
-  const initialItemsPromiseRef = useRef(initialItemsPromise);
-  const [items, setItems] = useState(initialItems);
+  const initialItemsPromiseRef = useRef(null);
+  const [items, setItems] = useState(INITIAL_CONTEXT.items);
 
   if (initialItemsPromise !== initialItemsPromiseRef.current) {
+    logger.info(
+      "[items]",
+      "need to update ItemsContextProvider initial items",
+      "use(initialItemsPromise)"
+    );
+    const initialItems = use(initialItemsPromise);
     initialItemsPromiseRef.current = initialItemsPromise;
-    logger.info("[items]", "updating ItemsContextProvider initial items", {
-      initialItems,
-    });
     setItems(initialItems);
   }
 
